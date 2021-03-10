@@ -69,6 +69,24 @@ void Sculptor::cutVoxel(int x, int y, int z)
   v[x][y][z].isOn = false;
 }
 
+void Sculptor::putBox(int x0, int x1, int y0, int y1, int z0, int z1)
+{
+  for (x = x0; x < x1; x++)
+  {
+    for (y = y0; y < x1; y++)
+    {
+      for (z = z0; z < z1; z++)
+      {
+        v[x][y][z].isOn = true;
+        v[x][y][z].r = this->r;
+        v[x][y][z].g = this->g;
+        v[x][y][z].b = this->b;
+        v[x][y][z].a = this->a;
+      }
+    }
+  }
+}
+
 void Sculptor::writeOFF(char *filename)
 {
   //contar quantos voxels são verdadeiros
