@@ -10,6 +10,7 @@ int main() {
     teste.setColor(0,1,0,0.7); //verde
     teste.putVoxel(0,0,1);
     teste.setColor(1,0,0,0.8); //vermelho
-    teste.putBox(1,4,1,4,1,4);
+    teste.putBox(1,6,1,6,1,6);
+    teste.cutBox(1,2,1,2,1,2);
     teste.writeOFF((char*)"teste.off");
 }
