@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <cmath>
 
 using namespace std;
 
@@ -77,11 +78,7 @@ void Sculptor::putBox(int x0, int x1, int y0, int y1, int z0, int z1)
     {
       for (z = z0; z < z1; z++)
       {
-        v[x][y][z].isOn = true;
-        v[x][y][z].r = this->r;
-        v[x][y][z].g = this->g;
-        v[x][y][z].b = this->b;
-        v[x][y][z].a = this->a;
+        putVoxel(x, y, z);
       }
     }
   }
@@ -95,7 +92,41 @@ void Sculptor::cutBox(int x0, int x1, int y0, int y1, int z0, int z1)
     {
       for (z = z0; z < z1; z++)
       {
-        v[x][y][z].isOn = false;
+        cutVoxel(x, y, z);
+      }
+    }
+  }
+}
+
+void Sculptor::putSphere(int xcenter, int ycenter, int zcenter, int radius)
+{
+  for (x = 0; x < nx; x++)
+  {
+    for (y = 0; y < ny; y++)
+    {
+      for (z = 0; z < nz; z++)
+      {
+        if ((pow((x - xcenter), 2) + pow((y - ycenter), 2) + pow((z - zcenter), 2)) <= (pow(radius, 2)))
+        {
+          putVoxel(x, y, z);
+        }
+      }
+    }
+  }
+}
+
+void Sculptor::cutSphere(int xcenter, int ycenter, int zcenter, int radius)
+{
+  for (x = 0; x < nx; x++)
+  {
+    for (y = 0; y < ny; y++)
+    {
+      for (z = 0; z < nz; z++)
+      {
+        if ((pow((x - xcenter), 2) + pow((y - ycenter), 2) + pow((z - zcenter), 2)) <= (pow(radius, 2)))
+        {
+          cutVoxel(x, y, z);
+        }
       }
     }
   }
