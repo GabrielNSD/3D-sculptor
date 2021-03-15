@@ -19,14 +19,24 @@ Sculptor::Sculptor(int _nx, int _ny, int _nz)
 
   //alocando memória para o espaço 3d
   v = new Voxel **[nx];
-  for (i = 0; i < _ny; i++)
+  v[0] = new Voxel *[nx * ny];
+  v[0][0] = new Voxel[nx * ny * nz];
+  for (i = 1; i < nx; i++)
+  {
+    v[i] = v[i - 1] + ny;
+  }
+  for (i = 1; i < nx * ny; i++)
+  {
+    v[0][i] = v[0][i - 1] + nz;
+  }
+  /* for (i = 0; i < _ny; i++)
   {
     v[i] = new Voxel *[ny];
     for (j = 0; j < _nz; j++)
     {
       v[i][j] = new Voxel[nz];
     }
-  }
+  } */
 
   for (i = 0; i < _nx; i++)
   {
@@ -45,6 +55,19 @@ Sculptor::~Sculptor()
   delete[] * *v;
   delete[] * v;
   delete[] v;
+  /* for (x = 0; x < nx; x++)
+  {
+    for (y = 0; y < ny; y++)
+    {
+      delete[] v[x][y];
+    }
+  }
+  for (x = 0; x < nx; x++)
+  {
+    delete[] v[x];
+  }
+  delete[] v; */
+
   cout << "destrutor rodou" << endl;
 }
 
@@ -74,7 +97,7 @@ void Sculptor::putBox(int x0, int x1, int y0, int y1, int z0, int z1)
 {
   for (x = x0; x < x1; x++)
   {
-    for (y = y0; y < x1; y++)
+    for (y = y0; y < y1; y++)
     {
       for (z = z0; z < z1; z++)
       {
@@ -88,7 +111,7 @@ void Sculptor::cutBox(int x0, int x1, int y0, int y1, int z0, int z1)
 {
   for (x = x0; x < x1; x++)
   {
-    for (y = y0; y < x1; y++)
+    for (y = y0; y < y1; y++)
     {
       for (z = z0; z < z1; z++)
       {
@@ -124,6 +147,40 @@ void Sculptor::cutSphere(int xcenter, int ycenter, int zcenter, int radius)
       for (z = 0; z < nz; z++)
       {
         if ((pow((x - xcenter), 2) + pow((y - ycenter), 2) + pow((z - zcenter), 2)) <= (pow(radius, 2)))
+        {
+          cutVoxel(x, y, z);
+        }
+      }
+    }
+  }
+}
+
+void Sculptor::putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz)
+{
+  for (x = 0; x < nx; x++)
+  {
+    for (y = 0; y < ny; y++)
+    {
+      for (z = 0; z < nz; z++)
+      {
+        if (((pow((x - xcenter), 2) / pow(rx, 2)) + (pow((y - ycenter), 2) / pow(ry, 2)) + (pow((z - zcenter), 2) / pow(rz, 2))) <= 1)
+        {
+          putVoxel(x, y, z);
+        }
+      }
+    }
+  }
+}
+
+void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz)
+{
+  for (x = 0; x < nx; x++)
+  {
+    for (y = 0; y < ny; y++)
+    {
+      for (z = 0; z < nz; z++)
+      {
+        if (((pow((x - xcenter), 2) / pow(rx, 2)) + (pow((y - ycenter), 2) / pow(ry, 2)) + (pow((z - zcenter), 2) / pow(rz, 2))) <= 1)
         {
           cutVoxel(x, y, z);
         }

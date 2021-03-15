@@ -9,6 +9,10 @@
     bool isOn; // Included or not
 }; */
 
+/**
+ * @brief A classe Sculptor implementa um desenhador tridimensional
+ * com várias funções
+ */
 class Sculptor
 {
 protected:
@@ -17,6 +21,19 @@ protected:
     float r, g, b, a;
 
 public:
+    /**
+     * @brief 
+     * 
+     * @param _nx dimensão do construtor no eixo x
+     * @param _ny dimensão do construtor no eixo y
+     * @param _nz dimensão do construtor no eixo z
+     * 
+     * @details 
+     * <ul>
+     *  <li> </li>
+     * </ul>
+     * 
+     */
     Sculptor(int _nx, int _ny, int _nz);
     ~Sculptor();
     void setColor(float r, float g, float b, float alpha);
