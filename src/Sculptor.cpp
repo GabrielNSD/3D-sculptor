@@ -189,39 +189,6 @@ void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
   }
 }
 
-void Sculptor::putCylinder(int xcenter, int ycenter, int height, int radius, int base)
-{
-  for (x = 0; x < nx; x++)
-  {
-    for (y = 0; y < ny; y++)
-    {
-      for (z = base; z < (base + height); z++)
-      {
-        if ((pow((x - xcenter), 2) + pow((y - ycenter), 2)) <= (pow(radius, 2)))
-        {
-          putVoxel(x, y, z);
-        }
-      }
-    }
-  }
-}
-
-void Sculptor::cutCylinder(int xcenter, int ycenter, int height, int radius, int base)
-{
-  for (x = 0; x < nx; x++)
-  {
-    for (y = 0; y < ny; y++)
-    {
-      for (z = base; z < (base + height); z++)
-      {
-        if ((pow((x - xcenter), 2) + pow((y - ycenter), 2)) <= (pow(radius, 2)))
-        {
-          cutVoxel(x, y, z);
-        }
-      }
-    }
-  }
-}
 
 void Sculptor::writeOFF(char *filename)
 {
@@ -229,20 +196,6 @@ void Sculptor::writeOFF(char *filename)
   float lado = 0.5;
   int voxelsOn = 0;
   int index = 0;
-  //cout << "nx= " << nx << endl;
-  /* for (int i = 1; i < nx-1; i++ ) {
-
-    for (int j = 1; j < ny-1; j++)
-    {
-      for (int k = 1; k < nz-1; k++)
-      {
-        if (v[i-1][j-1][k-1].isOn == true && v[i+1][j+1][k+1].isOn == true )
-        {
-          v[i][j][k].isOn = false;
-        }
-      }
-    }
-  } */
 
   for (int i = 0; i < nx; i++)
   {
