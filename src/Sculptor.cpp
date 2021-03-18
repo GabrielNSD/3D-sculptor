@@ -230,6 +230,20 @@ void Sculptor::writeOFF(char *filename)
   int voxelsOn = 0;
   int index = 0;
   //cout << "nx= " << nx << endl;
+  /* for (int i = 1; i < nx-1; i++ ) {
+
+    for (int j = 1; j < ny-1; j++)
+    {
+      for (int k = 1; k < nz-1; k++)
+      {
+        if (v[i-1][j-1][k-1].isOn == true && v[i+1][j+1][k+1].isOn == true )
+        {
+          v[i][j][k].isOn = false;
+        }
+      }
+    }
+  } */
+
   for (int i = 0; i < nx; i++)
   {
     for (int j = 0; j < ny; j++)
