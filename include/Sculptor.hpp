@@ -45,5 +45,7 @@ public:
     void cutSphere(int xcenter, int ycenter, int zcenter, int radius);
     void putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz);
     void cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz);
+    void putCylinder(int xcenter, int ycenter, int height, int radius, int base);
+    void cutCylinder(int xcenter, int ycenter, int height, int radius, int base);
     void writeOFF(char *filename);
 };
