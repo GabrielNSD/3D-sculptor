@@ -71,5 +71,5 @@ int main()
     teste.setColor(255, 255, 0, 1);
     teste.putBox(90, 110, 130, 132, 5, 15);
 
-    teste.writeOFF((char *)"teste.off");
+    teste.writeOFF((char *)"trofeu.off");
 }
