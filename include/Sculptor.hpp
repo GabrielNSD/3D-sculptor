@@ -169,6 +169,8 @@ public:
      */
     void cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz);
 
+    void limpaVoxels(void);
+
     /** @brief
      * 
      * Cria um arquivo .off que permite a visualização das formas em um software apropriado

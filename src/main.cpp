@@ -1,10 +1,13 @@
 #include <iostream>
 #include <cmath>
 #include "Sculptor.hpp"
+#include "PutVoxel.hpp"
+#include "CutVoxel.hpp"
+#include "PutBox.hpp"
 
 int main()
 {
-    Sculptor teste(200, 200, 200);
+    /*     Sculptor teste(200, 200, 200);
 
     teste.setColor(255, 229, 50, 1);
 
@@ -71,5 +74,25 @@ int main()
     teste.setColor(255, 255, 0, 1);
     teste.putBox(90, 110, 130, 132, 5, 15);
 
-    teste.writeOFF((char *)"trofeu.off");
+    teste.writeOFF((char *)"trofeu.off"); */
+
+    Sculptor *s;
+    s = new Sculptor(100, 100, 100);
+    FiguraGeometrica *sfig[5];
+    //vector<FiguraGeometrica*> figuras;
+    //PutVoxel v;
+
+    //s = new Sculptor(5,5,5);
+
+    sfig[0] = new PutVoxel(1, 1, 1, 1, 2, 3, 1);
+    sfig[1] = new PutVoxel(50, 50, 50, 1, 1, 1, 1);
+    sfig[2] = new PutBox(2,5,2,5,2,5,1,1,1,1);
+    sfig[3] = new CutVoxel(2,2,2);
+
+    sfig[0]->draw(*s);
+    sfig[1]->draw(*s);
+    sfig[2]->draw(*s);
+    sfig[3]->draw(*s);
+
+    s->writeOFF((char *)"figura.off");
 }

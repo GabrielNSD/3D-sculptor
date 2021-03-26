@@ -77,15 +77,17 @@ void Sculptor::setColor(float r, float g, float b, float alpha)
   this->g = g;
   this->b = b;
   this->a = alpha;
+  cout << "cor " << r << g << b << alpha << endl;
+  cout << this->r << endl;
 }
 
 void Sculptor::putVoxel(int x, int y, int z)
 {
   v[x][y][z].isOn = true;
-  v[x][y][z].r = this->r;
-  v[x][y][z].g = this->g;
-  v[x][y][z].b = this->b;
-  v[x][y][z].a = this->a;
+  v[x][y][z].r = r;
+  v[x][y][z].g = g;
+  v[x][y][z].b = b;
+  v[x][y][z].a = a;
 }
 
 void Sculptor::cutVoxel(int x, int y, int z)
@@ -189,6 +191,43 @@ void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
   }
 }
 
+/* void Sculptor::limpaVoxels(void)
+{
+  queue<int> q;
+  int lx, ly, lz;
+  for (x = 1; x < nx - 1; x++)
+  {
+    for (y = 1; y < ny - 1; y++)
+    {
+      for (z = 1; z < nz - 1; z++)
+      {
+        if ((v[x][y][z].isOn == true) &&
+            (v[x + 1][y][z].isOn == true) &&
+            (v[x - 1][y][z].isOn == true) &&
+            (v[x][y + 1][z].isOn == true) &&
+            (v[x][y - 1][z].isOn == true) &&
+            (v[x][y][z + 1].isOn == true) &&
+            (v[x][y][z - 1].isOn == true))
+        {
+          q.push(x);
+          q.push(y);
+          q.push(z);
+        }
+      }
+    }
+  }
+
+  while (!q.empty())
+  {
+    lx = q.front();
+    q.pop();
+    ly = q.front();
+    q.pop();
+    lz = q.front();
+    q.pop();
+    v[lx][ly][lz].isOn = false;
+  }
+} */
 
 void Sculptor::writeOFF(char *filename)
 {
@@ -275,6 +314,7 @@ void Sculptor::writeOFF(char *filename)
       {
         if (v[x][y][z].isOn == true)
         {
+          cout << "aqui " << v[x][y][z].r << endl;
           index = voxelsOn * 8;
           //face 1
           f << std::fixed;
