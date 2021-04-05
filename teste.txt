@@ -1,0 +1,4 @@
+DIM 60 60 60
+putvoxel  1 1 1 1 1 1 1
+putvoxel 59 59 59 1 1 1 1
+putbox 2 10 2 10 2 10 1 0.5 1 1

@@ -2,6 +2,7 @@
 #include <cmath>
 #include "Sculptor.hpp"
 #include "PutVoxel.hpp"
+#include <vector>
 
 #include "CutVoxel.hpp"
 #include "PutBox.hpp"
@@ -10,6 +11,8 @@
 #include "CutSphere.hpp"
 #include "PutEllipsoid.hpp"
 #include "CutEllipsoid.hpp"
+
+#include "Interpreter.hpp"
 
 int main()
 {
@@ -82,29 +85,28 @@ int main()
 
     teste.writeOFF((char *)"trofeu.off"); */
 
-    Sculptor *s;
-    s = new Sculptor(100, 100, 100);
-    FiguraGeometrica *sfig[10];
-    //vector<FiguraGeometrica*> figuras;
-    //PutVoxel v;
+    Sculptor *s1;
 
-    //s = new Sculptor(5,5,5);
+    Interpreter parser;
+    std::vector<FiguraGeometrica *> figs;
 
-    sfig[0] = new PutVoxel(1, 1, 1, 1, 2, 3, 1);
-    sfig[1] = new PutVoxel(50, 50, 50, 1, 1, 1, 1);
-    sfig[2] = new PutBox(2, 15, 2, 15, 2, 15, 1, 1, 1, 1);
-    sfig[3] = new CutVoxel(2, 2, 2);
-    //sfig[4] = new PutSphere(50, 50, 50, 15, 1, 1, 1, 1);
-    //sfig[5] = new CutSphere(46, 46, 46, 10);
-    sfig[4] = new PutEllipsoid(50,50,50,20,15,10,255,1,1,1);
-    sfig[5] = new CutEllipsoid(40,40,40,20,15,10);
+    figs = parser.parse((char *)"teste.txt");
 
-    sfig[0]->draw(*s);
-    sfig[1]->draw(*s);
-    sfig[2]->draw(*s);
-    sfig[3]->draw(*s);
-    sfig[4]->draw(*s);
-    sfig[5]->draw(*s);
+    s1 = new Sculptor(parser.getDimx(), parser.getDimy(), parser.getDimz());
 
-    s->writeOFF((char *)"figura.off");
+    for (size_t i = 0; i < figs.size(); i++)
+    {
+        figs[i]->draw(*s1);
+    }
+
+    s1->limpaVoxels();
+
+    s1->writeOFF((char *)"testeP2.off");
+
+    for (size_t i = 0; i < figs.size(); i++)
+    {
+        delete figs[i];
+    }
+
+    delete s1;
 }

@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iomanip>
 #include <cmath>
+#include <queue>
 
 using namespace std;
 
@@ -68,7 +69,7 @@ Sculptor::~Sculptor()
   }
   delete[] v; */
 
-  cout << "destrutor rodou" << endl;
+  //cout << "destrutor rodou" << endl;
 }
 
 void Sculptor::setColor(float r, float g, float b, float alpha)
@@ -77,8 +78,8 @@ void Sculptor::setColor(float r, float g, float b, float alpha)
   this->g = g;
   this->b = b;
   this->a = alpha;
-  cout << "cor " << r << g << b << alpha << endl;
-  cout << this->r << endl;
+  //cout << "cor " << r << g << b << alpha << endl;
+  //cout << this->r << endl;
 }
 
 void Sculptor::putVoxel(int x, int y, int z)
@@ -191,7 +192,7 @@ void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
   }
 }
 
-/* void Sculptor::limpaVoxels(void)
+void Sculptor::limpaVoxels(void)
 {
   queue<int> q;
   int lx, ly, lz;
@@ -227,7 +228,7 @@ void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
     q.pop();
     v[lx][ly][lz].isOn = false;
   }
-} */
+}
 
 void Sculptor::writeOFF(char *filename)
 {
@@ -249,7 +250,7 @@ void Sculptor::writeOFF(char *filename)
       }
     }
   }
-  cout << voxelsOn << endl;
+  //cout << voxelsOn << endl;
   //abrir arquivo
   ofstream f;
   f.open(filename);
@@ -262,7 +263,7 @@ void Sculptor::writeOFF(char *filename)
 
   //escrever coordenadas de todos os voxels verdadeiros
 
-  cout << index << endl;
+  //cout << index << endl;
 
   for (x = 0; x < nx; x++)
   {
@@ -305,7 +306,7 @@ void Sculptor::writeOFF(char *filename)
 
   //escrever vertices de todos os voxels verdadeiros
   voxelsOn = 0;
-  cout << index << endl;
+  //cout << index << endl;
   for (x = 0; x < nx; x++)
   {
     for (y = 0; y < ny; y++)
@@ -314,7 +315,7 @@ void Sculptor::writeOFF(char *filename)
       {
         if (v[x][y][z].isOn == true)
         {
-          cout << "aqui " << v[x][y][z].r << endl;
+          //cout << "aqui " << v[x][y][z].r << endl;
           index = voxelsOn * 8;
           //face 1
           f << std::fixed;
