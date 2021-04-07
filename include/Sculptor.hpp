@@ -169,6 +169,11 @@ public:
      */
     void cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz);
 
+    /** @brief
+     * 
+     * Apaga os Voxels não visíveis
+     */
+
     void limpaVoxels(void);
 
     /** @brief
