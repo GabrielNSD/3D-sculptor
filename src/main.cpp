@@ -16,7 +16,11 @@
 
 int main()
 {
-    /*     Sculptor teste(200, 200, 200);
+    /*     
+    
+    código da primeira parte
+
+    Sculptor teste(200, 200, 200);
 
     teste.setColor(255, 229, 50, 1);
 

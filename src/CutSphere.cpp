@@ -14,11 +14,40 @@ CutSphere::CutSphere(int xcenter, int ycenter, int zcenter, int radius)
 
 void CutSphere::draw(Sculptor &s)
 {
-    for (int x = (xcenter - radius); x < (xcenter + radius); x++)
+    int i, j, k;
+
+    if (xcenter - radius < 0)
     {
-        for (int y = (ycenter - radius); y < (ycenter + radius); y++)
+        i = 0;
+    }
+    else
+    {
+        i = xcenter - radius;
+    }
+
+    if (ycenter - radius < 0)
+    {
+        j = 0;
+    }
+    else
+    {
+        j = ycenter - radius;
+    }
+
+    if (zcenter - radius < 0)
+    {
+        k = 0;
+    }
+    else
+    {
+        k = zcenter - radius;
+    }
+
+    for (int x = i; x < (xcenter + radius); x++)
+    {
+        for (int y = j; y < (ycenter + radius); y++)
         {
-            for (int z = (zcenter - radius); z < (zcenter + radius); z++)
+            for (int z = k; z < (zcenter + radius); z++)
             {
                 if ((pow((x - xcenter), 2) + pow((y - ycenter), 2) + pow((z - zcenter), 2)) <= (pow(radius, 2)))
                 {
